@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Server is running!" });
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
