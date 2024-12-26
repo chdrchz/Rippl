@@ -2,6 +2,8 @@ import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
+import LeafMound from "../../assets/images/svg/landingPage/leaf_mound";
+
 export default function LandingScreen() {
   return (
     <LinearGradient
@@ -35,6 +37,7 @@ export default function LandingScreen() {
         </View>
 
         <Text style={styles.subtitle}>Not sure? Learn more about us here.</Text>
+        <LeafMound />
       </View>
     </LinearGradient>
   );
@@ -48,32 +51,38 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   title: {
-    fontSize: 24,
+    fontSize: 50,
     fontWeight: "bold",
-    marginBottom: 10,
     color: "#094D92",
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: 20,
     color: "#094D92",
   },
   buttonContainer: {
     flexDirection: "column",
-    gap: 10,
-    marginVertical: 10,
     textAlign: "center",
+    gap: 25,
   },
   buttonOne: {
-    padding: 10,
     backgroundColor: "#FFE8D6",
-    borderRadius: 5,
     borderWidth: 2,
     borderColor: "#56766A",
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 250,
+    height: 50,
   },
   buttonTwo: {
-    padding: 10,
     backgroundColor: "#56766A",
-    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "#56766A",
+    borderRadius: 25,
+    alignItems: "center",
+    justifyContent: "center",
+    width: 250,
+    height: 50,
   },
   buttonTextOne: {
     color: "#56766A",
@@ -94,10 +103,10 @@ const styles = StyleSheet.create({
   },
   bottomHalf: {
     flex: 1,
+    gap: 25,
     width: "100%",
     backgroundColor: "#FFE8D6",
     justifyContent: "center",
     alignItems: "center",
-    padding: 20,
   },
 });
