@@ -1,21 +1,30 @@
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import React from "react";
+import { Platform } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { LinkingOptions } from "@react-navigation/native";
 
-import LandingScreen from '../screens/LandingScreen';
-import MainTabScreen from '../(tabs)/index';
+import LandingScreen from "../screens/Landing";
+import MainTabScreen from "../(tabs)/index";
 
 const Stack = createStackNavigator();
 
+const linking: LinkingOptions<any> = {
+  prefixes: ['http://localhost:8081'],
+  config: {
+    screens: {
+      Landing: '',
+      MainTab: 'tabs/*'  // Add nested tab routes
+    }
+  }
+};
+
 export default function AppNavigator() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator 
-        initialRouteName="Landing"
-        screenOptions={{ headerShown: false }}
-      >
+    <NavigationContainer linking={linking}>
+      <Stack.Navigator>
         <Stack.Screen name="Landing" component={LandingScreen} />
-        <Stack.Screen name="MainTabs" component={MainTabScreen} />
+        <Stack.Screen name="MainTab" component={MainTabScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

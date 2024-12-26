@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import LandingScreen from '../screens/LandingScreen';
+import LandingScreen from '../screens/Landing';
 
 const Tab = createBottomTabNavigator();
 
