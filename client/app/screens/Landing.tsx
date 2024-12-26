@@ -6,6 +6,7 @@ export default function LandingScreen() {
   return (
     <LinearGradient
       colors={["rgb(0, 119, 182)", "rgb(66, 148, 190)", "rgb(255, 232, 214)"]}
+      locations={[0, 0.17, 1]}
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
       style={styles.landing}
@@ -19,17 +20,17 @@ export default function LandingScreen() {
       <View>
         <Text>SVGSs will go here</Text>
       </View>
-      <View style={styles.sandContainer}>
+      <View style={styles.bottomHalf}>
         <Text style={styles.subtitle}>
           Create an account to join our waitlist.
         </Text>
 
         <View style={styles.buttonContainer}>
           <Pressable style={styles.buttonOne}>
-            <Text style={styles.buttonTextOne}>sign up</Text>
+            <Text style={styles.buttonTextOne}>Sign Up</Text>
           </Pressable>
           <Pressable style={styles.buttonTwo}>
-            <Text style={styles.buttonTextTwo}>sign up</Text>
+            <Text style={styles.buttonTextTwo}>Updates</Text>
           </Pressable>
         </View>
 
@@ -66,6 +67,8 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "#FFE8D6",
     borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "#56766A",
   },
   buttonTwo: {
     padding: 10,
@@ -89,8 +92,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  sandContainer: {
+  bottomHalf: {
     flex: 1,
+    width: "100%",
     backgroundColor: "#FFE8D6",
     justifyContent: "center",
     alignItems: "center",
