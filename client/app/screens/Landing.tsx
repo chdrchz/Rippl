@@ -36,8 +36,12 @@ export default function LandingScreen() {
           </Pressable>
         </View>
 
-        <Text style={styles.subtitle}>Not sure? Learn more about us here.</Text>
-        <LeafMound />
+        <View style={styles.learnMoreContainer}>
+          <Text style={styles.subtitle}>
+            Not sure? Learn more about us here.
+          </Text>
+          <LeafMound style={styles.leafMound} />
+        </View>
       </View>
     </LinearGradient>
   );
@@ -49,6 +53,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
+    width: "100%",
   },
   title: {
     fontSize: 50,
@@ -62,7 +67,10 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "column",
     textAlign: "center",
+    position: 'relative',
+    marginTop: 100,
     gap: 25,
+    zIndex: 2,
   },
   buttonOne: {
     backgroundColor: "#FFE8D6",
@@ -90,9 +98,6 @@ const styles = StyleSheet.create({
   buttonTextTwo: {
     color: "#FFE8D6",
   },
-  actionText: {
-    marginBottom: 10,
-  },
   linkText: {
     color: "#007AFF",
   },
@@ -103,10 +108,28 @@ const styles = StyleSheet.create({
   },
   bottomHalf: {
     flex: 1,
-    gap: 25,
     width: "100%",
     backgroundColor: "#FFE8D6",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    position: 'relative',
     alignItems: "center",
+    paddingTop: 25,
+  },
+  leafMound: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    margin: 0,
+    padding: 0,
+    left: 0,
+    right: 0,
+  },
+  learnMoreContainer: {
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    bottom: 0,
+    zIndex: 1,
   },
 });
