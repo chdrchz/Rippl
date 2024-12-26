@@ -1,10 +1,16 @@
 import React from "react";
+import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
 export default function LandingScreen() {
   return (
-    <View style={styles.landing}>
-      <View>
+    <LinearGradient
+      colors={["rgb(0, 119, 182)", "rgb(66, 148, 190)", "rgb(255, 232, 214)"]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={styles.landing}
+    >
+      <View style={styles.topHalf}>
         <Text style={styles.title}>Rippl.</Text>
         <Text style={styles.subtitle}>
           Where small connections make big waves.
@@ -13,19 +19,23 @@ export default function LandingScreen() {
       <View>
         <Text>SVGSs will go here</Text>
       </View>
-      <View>
-        <Text>Create an account to join our waitlist.</Text>
+      <View style={styles.sandContainer}>
+        <Text style={styles.subtitle}>
+          Create an account to join our waitlist.
+        </Text>
+
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>sign up</Text>
+          <Pressable style={styles.buttonOne}>
+            <Text style={styles.buttonTextOne}>sign up</Text>
           </Pressable>
-          <Pressable style={styles.button}>
-            <Text style={styles.buttonText}>sign up</Text>
+          <Pressable style={styles.buttonTwo}>
+            <Text style={styles.buttonTextTwo}>sign up</Text>
           </Pressable>
         </View>
-        <Text>Not sure? Learn more about us here.</Text>
+
+        <Text style={styles.subtitle}>Not sure? Learn more about us here.</Text>
       </View>
-    </View>
+    </LinearGradient>
   );
 }
 
@@ -40,10 +50,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 10,
+    color: "#094D92",
   },
   subtitle: {
     fontSize: 18,
-    color: "#666666",
+    color: "#094D92",
   },
   buttonContainer: {
     flexDirection: "column",
@@ -51,18 +62,38 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     textAlign: "center",
   },
-  button: {
+  buttonOne: {
     padding: 10,
-    backgroundColor: "#007AFF",
+    backgroundColor: "#FFE8D6",
     borderRadius: 5,
   },
-  buttonText: {
-    color: "white",
+  buttonTwo: {
+    padding: 10,
+    backgroundColor: "#56766A",
+    borderRadius: 5,
+  },
+  buttonTextOne: {
+    color: "#56766A",
+  },
+  buttonTextTwo: {
+    color: "#FFE8D6",
   },
   actionText: {
     marginBottom: 10,
   },
   linkText: {
     color: "#007AFF",
+  },
+  topHalf: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  sandContainer: {
+    flex: 1,
+    backgroundColor: "#FFE8D6",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
   },
 });

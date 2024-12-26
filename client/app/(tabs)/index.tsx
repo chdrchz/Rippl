@@ -6,15 +6,5 @@ import LandingScreen from '../screens/Landing';
 const Tab = createBottomTabNavigator();
 
 export default function MainScreen() {
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
-        headerShown: false
-      }}
-    >
-      <Tab.Screen name="Landing" component={LandingScreen} />
-    </Tab.Navigator>
-  );
+  return <LandingScreen />;
 }
