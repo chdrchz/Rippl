@@ -1,22 +1,25 @@
 import React from "react";
+import { router } from "expo-router"; // Import Link from expo-router
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
-import LeafMound from "../../assets/images/svg/landingPage/leaf_mound";
-import Bikers from "../../assets/images/svg/landingPage/bikes";
-import SelfieGirls from "../../assets/images/svg/landingPage/selfie_girls";
-import GuySitting from "../../assets/images/svg/landingPage/guy_sitting";
-import Skator from "../../assets/images/svg/landingPage/skator";
-
 import { useFonts, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
-import AppNavigator from "../../app/navigation/AppNavigator";
+
+import LeafMound from "../assets/images/svg/landingPage/leaf_mound.svg";
+import Bikers from "../assets/images/svg/landingPage/bikes.svg";
+import SelfieGirls from "../assets/images/svg/landingPage/selfie_girls.svg";
+import GuySitting from "../assets/images/svg/landingPage/guy_sitting.svg";
+import Skator from "../assets/images/svg/landingPage/skator.svg";
 
 export default function LandingScreen() {
-  let [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Montserrat_400Regular,
   });
 
-  if (!fontsLoaded) return null;
+  // Ensure that fonts are loaded before rendering the component
+  if (!fontsLoaded) {
+    return null; // You can return a loading screen or placeholder here instead
+  }
 
   return (
     <LinearGradient
@@ -59,8 +62,8 @@ export default function LandingScreen() {
             <Text style={styles.buttonTextOne}>Sign Up</Text>
           </Pressable>
           <Pressable
+            onPress={() => router.push("/updates")}
             style={[styles.buttonTwo, styles.dropShadow]}
-            onPress={() => navigation.navigate('Updates')}
           >
             <Text style={styles.buttonTextTwo}>Updates</Text>
           </Pressable>
@@ -161,6 +164,7 @@ const styles = StyleSheet.create({
     borderColor: "#56766A",
     borderRadius: 25,
     alignItems: "center",
+    textAlign: "center",
     justifyContent: "center",
     width: 250,
     height: 50,
@@ -174,6 +178,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "#FFE8D6",
+    textAlign: "center",
+    alignItems: "center",
   },
   linkText: {
     color: "#007AFF",

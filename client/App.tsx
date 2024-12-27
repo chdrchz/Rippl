@@ -1,7 +1,5 @@
-import React from 'react';
-import AppNavigator from "./app/navigation/AppNavigator.js";
+import { ExpoRoot } from 'expo-router';
 
 export default function App() {
-  console.log("Is this working?");
-  return <AppNavigator />;
+  return <ExpoRoot />;
 }
