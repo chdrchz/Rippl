@@ -58,7 +58,9 @@ export default function LandingScreen() {
           <Text style={styles.subtitleBottom}>
             Create an account to join our waitlist.
           </Text>
-          <Pressable style={[styles.buttonOne, styles.dropShadow]}>
+          <Pressable
+          onPress={() => router.push("/profile")}
+          style={[styles.buttonOne, styles.dropShadow]}>
             <Text style={styles.buttonTextOne}>Sign Up</Text>
           </Pressable>
           <Pressable
