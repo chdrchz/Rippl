@@ -1,10 +1,28 @@
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import AppNavigator from "../navigation/AppNavigator";
 
 import LeafMound from "../../assets/images/svg/landingPage/leaf_mound";
+import Bikers from "../../assets/images/svg/landingPage/bikes";
+import SelfieGirls from "../../assets/images/svg/landingPage/selfie_girls";
+import GuySitting from "../../assets/images/svg/landingPage/guy_sitting";
+import Skator from "../../assets/images/svg/landingPage/skator";
+
+import { useFonts, Montserrat_400Regular } from '@expo-google-fonts/montserrat';
 
 export default function LandingScreen() {
+  const navigation = useNavigation();
+  const [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
+  });
+
+  // Ensure that fonts are loaded before rendering the component
+  if (!fontsLoaded) {
+    return null;  // You can return a loading screen or placeholder here instead
+  }
+
   return (
     <LinearGradient
       colors={["rgb(0, 119, 182)", "rgb(66, 148, 190)", "rgb(255, 232, 214)"]}
@@ -14,35 +32,47 @@ export default function LandingScreen() {
       style={styles.landing}
     >
       <View style={styles.topHalf}>
-        <Text style={styles.title}>Rippl.</Text>
-        <Text style={styles.subtitle}>
+        <Text style={styles.title}>Rippl<Text style={styles.period}>.</Text></Text>
+        <Text style={styles.subtitleTop}>
           Where small connections make big waves.
         </Text>
+        <View style={[styles.svgContainer, styles.dropShadow]}>
+          <Bikers style={styles.bikers}></Bikers>
+          <SelfieGirls style={styles.selfieGirls}></SelfieGirls>
+          <GuySitting style={styles.guySitting}></GuySitting>
+          <Skator style={styles.skator}></Skator>
+        </View>
       </View>
-      <View>
-        <Text>SVGSs will go here</Text>
-      </View>
-      <View style={styles.bottomHalf}>
-        <Text style={styles.subtitle}>
-          Create an account to join our waitlist.
-        </Text>
-
+      <LinearGradient
+        colors={[
+          "rgb(255, 232, 214)",
+          "rgb(214, 213, 195)",
+          "rgb(124, 170, 152)",
+        ]}
+        locations={[0, 0.90, 1]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.bottomHalf}
+      >
         <View style={styles.buttonContainer}>
-          <Pressable style={styles.buttonOne}>
+          <Text style={styles.subtitleBottom}>
+            Create an account to join our waitlist.
+          </Text>
+          <Pressable style={[styles.buttonOne, styles.dropShadow]}>
             <Text style={styles.buttonTextOne}>Sign Up</Text>
           </Pressable>
-          <Pressable style={styles.buttonTwo}>
+          <Pressable
+            style={[styles.buttonTwo, styles.dropShadow]}
+            onPress={() => navigation.push('Updates')}
+          >
             <Text style={styles.buttonTextTwo}>Updates</Text>
           </Pressable>
-        </View>
-
-        <View style={styles.learnMoreContainer}>
-          <Text style={styles.subtitle}>
+          <Text style={styles.subtitleBottom}>
             Not sure? Learn more about us here.
           </Text>
-          <LeafMound style={styles.leafMound} />
         </View>
-      </View>
+        <LeafMound style={styles.leafMound} />
+      </LinearGradient>
     </LinearGradient>
   );
 }
@@ -50,26 +80,72 @@ export default function LandingScreen() {
 const styles = StyleSheet.create({
   landing: {
     flex: 1,
+    fontFamily: 'Montserrat_400Regular',
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
     width: "100%",
+    gap: 25,
   },
   title: {
     fontSize: 50,
     fontWeight: "bold",
     color: "#094D92",
   },
-  subtitle: {
+  period: {
+    color: "#0077B6",
+  },
+  subtitleBottom: {
+    fontSize: 20,
+    color: "#3E594E",
+    fontWeight: "bold",
+    marginLeft: 25,
+    marginRight: 25,
+    textAlign: "center",
+  },
+  subtitleTop: {
     fontSize: 20,
     color: "#094D92",
+    fontWeight: "bold",
+    marginLeft: 25,
+    marginRight: 25,
+    textAlign: "center",
+  },
+  svgContainer: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "flex-end",
+    borderBottomWidth: 2,
+    borderColor: "black",
+    position: "relative",
+  },
+  bikers: {
+    width: 100,
+    height: 100,
+    marginBottom: -9,
+  },
+  selfieGirls: {
+    width: 120,
+    height: 120,
+    marginBottom: -18,
+  },
+  guySitting: {
+    width: 90,
+    height: 90,
+    marginBottom: -43,
+  },
+  skator: {
+    width: 110,
+    height: 120,
+    marginBottom: -25,
   },
   buttonContainer: {
     flexDirection: "column",
     textAlign: "center",
-    position: 'relative',
-    marginTop: 100,
-    gap: 25,
+    alignItems: "center",
+    position: "relative",
+    gap: 30,
     zIndex: 2,
   },
   buttonOne: {
@@ -93,9 +169,13 @@ const styles = StyleSheet.create({
     height: 50,
   },
   buttonTextOne: {
+    fontSize: 20,
+    fontWeight: "bold",
     color: "#56766A",
   },
   buttonTextTwo: {
+    fontSize: 20,
+    fontWeight: "bold",
     color: "#FFE8D6",
   },
   linkText: {
@@ -103,17 +183,22 @@ const styles = StyleSheet.create({
   },
   topHalf: {
     flex: 1,
-    justifyContent: "center",
+    width: "100%",
+    justifyContent: "flex-end",
     alignItems: "center",
+    marginBottom: 50,
+    gap: 30,
   },
   bottomHalf: {
     flex: 1,
     width: "100%",
     backgroundColor: "#FFE8D6",
-    justifyContent: "flex-start",
-    position: 'relative',
+    justifyContent: "center",
+    position: "relative",
     alignItems: "center",
-    paddingTop: 25,
+    borderTopRightRadius: 50,
+    borderTopLeftRadius: 50,
+    overflow: "hidden",
   },
   leafMound: {
     position: "absolute",
@@ -123,13 +208,15 @@ const styles = StyleSheet.create({
     padding: 0,
     left: 0,
     right: 0,
+    transform: [{ scale: 1.2 }],
   },
-  learnMoreContainer: {
-    width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "absolute",
-    bottom: 0,
-    zIndex: 1,
+  dropShadow: {
+    // iOS shadow
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    // Android shadow
+    elevation: 4,
   },
 });
