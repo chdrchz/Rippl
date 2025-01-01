@@ -41,6 +41,7 @@
     "react-dom": "18.3.1",
     "react-native": "0.76.5",
     "react-native-canvas": "^0.1.40",
+    "react-native-dotenv": "^3.4.11",
     "react-native-image-filter-kit": "^0.8.0",
     "react-native-reanimated": "~3.16.1",
     "react-native-svg": "^15.8.0",
