@@ -1,11 +1,17 @@
 import React from "react";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Image, Text, Pressable, StyleSheet } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function LandingScreen() {
 
-
   return (
-    <View style={styles.landing}>
+    <LinearGradient
+      colors={["rgb(0, 119, 182)", "rgb(66, 148, 190)", "rgb(255, 232, 214)"]}
+      locations={[0, 0.17, 1]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 0, y: 1 }}
+      style={styles.landing}
+    >
       <View style={styles.topHalf}>
         <Text style={styles.title}>
           Rippl<Text style={styles.period}>.</Text>
@@ -14,9 +20,31 @@ export default function LandingScreen() {
           Where small connections make big waves.
         </Text>
         <View style={[styles.svgContainer, styles.dropShadow]}>
+          <Image style={styles.bikers}
+            source={require('../assets/images/bikes.svg')}
+          />
+          <Image style={styles.selfieGirls}
+            source={require('../assets/images/selfie_girls.svg')}
+          />
+          <Image style={styles.guySitting}
+            source={require('../assets/images/guy_sitting.svg')}
+          />
+          <Image style={styles.skator}
+            source={require('../assets/images/skator.svg')}
+          />
         </View>
       </View>
-      <View style={styles.bottomHalf}>
+      <LinearGradient
+        colors={[
+          "rgb(255, 232, 214)",
+          "rgb(214, 213, 195)",
+          "rgb(124, 170, 152)",
+        ]}
+        locations={[0, 0.9, 1]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.bottomHalf}
+      >
         <View style={styles.buttonContainer}>
           <Text style={styles.subtitleBottom}>
             Create an account to join our waitlist.
@@ -34,8 +62,8 @@ export default function LandingScreen() {
             Not sure? Learn more about us here.
           </Text>
         </View>
-      </View>
-    </View>
+      </LinearGradient>
+    </LinearGradient>
   );
 }
 
