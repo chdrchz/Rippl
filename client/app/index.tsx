@@ -1,6 +1,15 @@
 import React from "react";
-import { View, Image, Text, Pressable, StyleSheet } from "react-native";
+import { router } from "expo-router"; // Import Link from expo-router
 import { LinearGradient } from "expo-linear-gradient";
+import { View, Text, Pressable, StyleSheet } from "react-native";
+
+import { useFonts, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+
+import LeafMound from "../assets/images/leaf_mound.svg";
+import Bikers from "../assets/images/bikes.svg";
+import SelfieGirls from "../assets/images/selfie_girls.svg";
+import GuySitting from "../assets/images/guy_sitting.svg";
+import Skator from "../assets/images/skator.svg";
 
 export default function LandingScreen() {
 
@@ -20,18 +29,10 @@ export default function LandingScreen() {
           Where small connections make big waves.
         </Text>
         <View style={[styles.svgContainer, styles.dropShadow]}>
-          <Image style={styles.bikers}
-            source={require('../assets/images/bikes.svg')}
-          />
-          <Image style={styles.selfieGirls}
-            source={require('../assets/images/selfie_girls.svg')}
-          />
-          <Image style={styles.guySitting}
-            source={require('../assets/images/guy_sitting.svg')}
-          />
-          <Image style={styles.skator}
-            source={require('../assets/images/skator.svg')}
-          />
+          <Bikers style={styles.bikers}></Bikers>
+          <SelfieGirls style={styles.selfieGirls}></SelfieGirls>
+          <GuySitting style={styles.guySitting}></GuySitting>
+          <Skator style={styles.skator}></Skator>
         </View>
       </View>
       <LinearGradient
@@ -50,10 +51,12 @@ export default function LandingScreen() {
             Create an account to join our waitlist.
           </Text>
           <Pressable
+          onPress={() => router.push("/profile")}
           style={[styles.buttonOne, styles.dropShadow]}>
             <Text style={styles.buttonTextOne}>Sign Up</Text>
           </Pressable>
           <Pressable
+            onPress={() => router.push("/updates")}
             style={[styles.buttonTwo, styles.dropShadow]}
           >
             <Text style={styles.buttonTextTwo}>Updates</Text>
@@ -62,6 +65,7 @@ export default function LandingScreen() {
             Not sure? Learn more about us here.
           </Text>
         </View>
+        <LeafMound style={styles.leafMound} />
       </LinearGradient>
     </LinearGradient>
   );
