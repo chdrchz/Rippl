@@ -7,15 +7,17 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import AppText from './components/AppText';
 import AppHeaderText from "./components/AppHeaderText";
 
-// Buttons with borders + w/o
+// Buttons with borders, w/o borders, and inline links
 import ButtonOutline from "./components/ButtonOutline";
 import ButtonSolid from "./components/ButtonSolid";
 
+// Svgs
 import LeafMound from "../assets/images/leaf_mound.svg";
 import Bikers from "../assets/images/bikes.svg";
 import SelfieGirls from "../assets/images/selfie_girls.svg";
 import GuySitting from "../assets/images/guy_sitting.svg";
 import Skator from "../assets/images/skator.svg";
+import ButtonPlainLink from "./components/ButtonPlainLink";
 
 export default function LandingScreen() {
   return (
@@ -61,11 +63,11 @@ export default function LandingScreen() {
           </Link>
           <AppText>
             Not sure? Learn more about us{" "}
-            <Pressable>
+            <ButtonPlainLink>
               <Link href="/about">
-                <AppText>here</AppText>
+                here
               </Link>
-            </Pressable>
+            </ButtonPlainLink>
           </AppText>
         </View>
         <LeafMound style={styles.leafMound} />
@@ -146,22 +148,6 @@ const styles = StyleSheet.create({
     height: 50,
     fontFamily: 'Montserrat-700',
   },
-  buttonThree: {
-    width: "auto",
-    margin: 0,
-  },
-  buttonTextOne: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#56766A",
-  },
-  buttonTextTwo: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#FFE8D6",
-    textAlign: "center",
-    alignItems: "center",
-  },
   linkText: {
     color: "#007AFF",
   },
@@ -193,14 +179,5 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     transform: [{ scale: 1.2 }],
-  },
-  dropShadow: {
-    // iOS shadow
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    // Android shadow
-    elevation: 4,
-  },
+  }
 });
