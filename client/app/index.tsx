@@ -2,10 +2,14 @@ import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
-// App text + App header text are the wrappers for every text element to 
+// These are the wrappers for every text element to 
 // maintain consistency between text elements
-import { AppText } from './components/AppText';
-import { AppHeaderText } from "./components/AppHeaderText";
+import AppText from './components/AppText';
+import AppHeaderText from "./components/AppHeaderText";
+
+// Buttons with borders + w/o
+import ButtonOutline from "./components/ButtonOutline";
+import ButtonSolid from "./components/ButtonSolid";
 
 import LeafMound from "../assets/images/leaf_mound.svg";
 import Bikers from "../assets/images/bikes.svg";
@@ -46,14 +50,14 @@ export default function LandingScreen() {
         <View style={styles.buttonContainer}>
           <AppText>Create an account to join our waitlist.</AppText>
           <Link href="/profile">
-            <Pressable style={[styles.buttonOne, styles.dropShadow]}>
-              <Text style={styles.buttonTextOne}>Sign Up</Text>
-            </Pressable>
+            <ButtonOutline>
+              Sign Up
+            </ButtonOutline>
           </Link>
           <Link href="/updates">
-            <Pressable style={[styles.buttonTwo, styles.dropShadow]}>
-              <Text style={styles.buttonTextTwo}>Updates</Text>
-            </Pressable>
+            <ButtonSolid>
+              Updates
+            </ButtonSolid>
           </Link>
           <AppText>
             Not sure? Learn more about us{" "}

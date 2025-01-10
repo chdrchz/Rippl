@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
 import { Pressable, Text, StyleSheet } from 'react-native';
 
-export default function ButtonOutline({ children }) {
+export default function ButtonSolid({ children }) {
     const [fontsLoaded] = useFonts({
         'Montserrat-700': require('../../assets/fonts/montserrat-latin-700-normal.ttf'),
       });
@@ -20,7 +20,7 @@ export default function ButtonOutline({ children }) {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "#FFE8D6",
+        backgroundColor: "#56766A",
         borderWidth: 2,
         borderColor: "#56766A",
         borderRadius: 25,
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
         height: 50,
       },
     buttonText: {
-        color: "#56766A",
+        color: "#FFE8D6",
         fontSize: 20,
         fontFamily: "Montserrat-700",
     }

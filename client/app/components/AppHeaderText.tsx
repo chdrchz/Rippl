@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
 import { Text, StyleSheet } from 'react-native';
 
-export function AppHeaderText({ children }) {
+export default function AppHeaderText({ children }) {
     const [fontsLoaded] = useFonts({
         'Montserrat-700': require('../../assets/fonts/montserrat-latin-700-normal.ttf'),
       });
