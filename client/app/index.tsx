@@ -1,4 +1,4 @@
-import React from "react";
+import { useFonts } from 'expo-font';
 import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
@@ -10,19 +10,27 @@ import GuySitting from "../assets/images/guy_sitting.svg";
 import Skator from "../assets/images/skator.svg";
 
 export default function LandingScreen() {
+  const [fontsLoaded] = useFonts({
+    'Montserrat-700': require('../assets/fonts/montserrat-latin-700-normal.ttf'),
+  });
+
+  if (!fontsLoaded) {
+    return null; // You can return a loading screen or placeholder here instead
+  }
+
   return (
     <LinearGradient
       colors={["rgb(0, 119, 182)", "rgb(66, 148, 190)", "rgb(255, 232, 214)"]}
       locations={[0, 0.17, 1]}
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
-      style={styles.landing}
+      style={[styles.landing]}
     >
       <View style={styles.topHalf}>
         <Text style={styles.title}>
           Rippl<Text style={styles.period}>.</Text>
         </Text>
-        <Text style={styles.subtitleTop}>
+        <Text style={styles.subtitle}>
           Where small connections make big waves.
         </Text>
         <View style={[styles.svgContainer, styles.dropShadow]}>
@@ -44,7 +52,7 @@ export default function LandingScreen() {
         style={styles.bottomHalf}
       >
         <View style={styles.buttonContainer}>
-          <Text style={styles.subtitleBottom}>
+          <Text style={styles.subtitle}>
             Create an account to join our waitlist.
           </Text>
           <Link href="/profile">
@@ -57,7 +65,7 @@ export default function LandingScreen() {
               <Text style={styles.buttonTextTwo}>Updates</Text>
             </Pressable>
           </Link>
-          <Text style={styles.subtitleBottom}>
+          <Text style={styles.subtitle}>
             Not sure? Learn more about us{" "}
             <Pressable>
               <Link href="/about">
@@ -75,7 +83,6 @@ export default function LandingScreen() {
 const styles = StyleSheet.create({
   landing: {
     flex: 1,
-    fontFamily: "Montserrat_400Regular",
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
@@ -86,25 +93,19 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontWeight: "bold",
     color: "#094D92",
+    fontFamily: 'Montserrat-700',
   },
   period: {
     color: "#0077B6",
   },
-  subtitleBottom: {
-    fontSize: 20,
-    color: "#3E594E",
-    fontWeight: "bold",
-    marginLeft: 25,
-    marginRight: 25,
-    textAlign: "center",
-  },
-  subtitleTop: {
+  subtitle: {
     fontSize: 20,
     color: "#094D92",
     fontWeight: "bold",
     marginLeft: 25,
     marginRight: 25,
     textAlign: "center",
+    fontFamily: 'Montserrat-700',
   },
   svgContainer: {
     width: "100%",
@@ -152,6 +153,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 250,
     height: 50,
+    fontFamily: 'Montserrat-700',
   },
   buttonTwo: {
     backgroundColor: "#56766A",
@@ -163,6 +165,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 250,
     height: 50,
+    fontFamily: 'Montserrat-700',
   },
   buttonThree: {
     width: "auto",
