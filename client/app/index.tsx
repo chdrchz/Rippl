@@ -3,6 +3,10 @@ import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
+// App text is the wrapper for every text element to 
+// maintain consistency between text elements
+import { AppText } from './components/AppText';
+
 import LeafMound from "../assets/images/leaf_mound.svg";
 import Bikers from "../assets/images/bikes.svg";
 import SelfieGirls from "../assets/images/selfie_girls.svg";
@@ -10,14 +14,6 @@ import GuySitting from "../assets/images/guy_sitting.svg";
 import Skator from "../assets/images/skator.svg";
 
 export default function LandingScreen() {
-  const [fontsLoaded] = useFonts({
-    'Montserrat-700': require('../assets/fonts/montserrat-latin-700-normal.ttf'),
-  });
-
-  if (!fontsLoaded) {
-    return null; // You can return a loading screen or placeholder here instead
-  }
-
   return (
     <LinearGradient
       colors={["rgb(0, 119, 182)", "rgb(66, 148, 190)", "rgb(255, 232, 214)"]}
@@ -27,12 +23,8 @@ export default function LandingScreen() {
       style={[styles.landing]}
     >
       <View style={styles.topHalf}>
-        <Text style={styles.title}>
-          Rippl<Text style={styles.period}>.</Text>
-        </Text>
-        <Text style={styles.subtitle}>
-          Where small connections make big waves.
-        </Text>
+        <AppText>Rippl.</AppText>
+        <AppText>Where small connections make big waves.</AppText>
         <View style={[styles.svgContainer, styles.dropShadow]}>
           <Bikers style={styles.bikers}></Bikers>
           <SelfieGirls style={styles.selfieGirls}></SelfieGirls>
@@ -44,17 +36,15 @@ export default function LandingScreen() {
         colors={[
           "rgb(255, 232, 214)",
           "rgb(214, 213, 195)",
-          "rgb(124, 170, 152)",
+          "rgb(193, 192, 165)",
         ]}
-        locations={[0, 0.9, 1]}
+        locations={[0, 0.95, 1]}
         start={{ x: 0, y: 0 }}
         end={{ x: 0, y: 1 }}
         style={styles.bottomHalf}
       >
         <View style={styles.buttonContainer}>
-          <Text style={styles.subtitle}>
-            Create an account to join our waitlist.
-          </Text>
+          <AppText>Create an account to join our waitlist.</AppText>
           <Link href="/profile">
             <Pressable style={[styles.buttonOne, styles.dropShadow]}>
               <Text style={styles.buttonTextOne}>Sign Up</Text>
@@ -65,14 +55,14 @@ export default function LandingScreen() {
               <Text style={styles.buttonTextTwo}>Updates</Text>
             </Pressable>
           </Link>
-          <Text style={styles.subtitle}>
+          <AppText>
             Not sure? Learn more about us{" "}
             <Pressable>
               <Link href="/about">
-                <Text>here</Text>
+                <AppText>here</AppText>
               </Link>
             </Pressable>
-          </Text>
+          </AppText>
         </View>
         <LeafMound style={styles.leafMound} />
       </LinearGradient>
