@@ -1,15 +1,18 @@
+import { SetStateAction, useState } from "react";
 import { Link } from "expo-router";
-import { LinearGradient } from "expo-linear-gradient";
-import { View, Text, Pressable, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-// These are the wrappers for every text element to 
-// maintain consistency between text elements
-import AppText from './components/AppText';
+// Wrappers for consistent text elements
+import AppText from "./components/AppText";
 import AppHeaderText from "./components/AppHeaderText";
 
-// Buttons with borders, w/o borders, and inline links
+// Buttons
 import ButtonOutline from "./components/ButtonOutline";
 import ButtonSolid from "./components/ButtonSolid";
+import ButtonPlainLink from "./components/ButtonPlainLink";
+
+// Gradients
+import { BlueGradient, BrownGradient } from "./components/GradientBackgrounds";
 
 // Svgs
 import LeafMound from "../assets/images/leaf_mound.svg";
@@ -17,62 +20,81 @@ import Bikers from "../assets/images/bikes.svg";
 import SelfieGirls from "../assets/images/selfie_girls.svg";
 import GuySitting from "../assets/images/guy_sitting.svg";
 import Skator from "../assets/images/skator.svg";
-import ButtonPlainLink from "./components/ButtonPlainLink";
 
-export default function LandingScreen() {
-  return (
-    <LinearGradient
-      colors={["rgb(0, 119, 182)", "rgb(66, 148, 190)", "rgb(255, 232, 214)"]}
-      locations={[0, 0.17, 1]}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 0, y: 1 }}
-      style={[styles.landing]}
-    >
-      <View style={styles.topHalf}>
-        <AppHeaderText>Rippl<Text style={styles.period}>.</Text></AppHeaderText>
-        <AppText>Where small connections make big waves.</AppText>
-        <View style={[styles.svgContainer, styles.dropShadow]}>
-          <Bikers style={styles.bikers}></Bikers>
-          <SelfieGirls style={styles.selfieGirls}></SelfieGirls>
-          <GuySitting style={styles.guySitting}></GuySitting>
-          <Skator style={styles.skator}></Skator>
-        </View>
-      </View>
-      <LinearGradient
-        colors={[
-          "rgb(255, 232, 214)",
-          "rgb(214, 213, 195)",
-          "rgb(193, 192, 165)",
-        ]}
-        locations={[0, 0.95, 1]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 0, y: 1 }}
-        style={styles.bottomHalf}
-      >
-        <View style={styles.buttonContainer}>
-          <AppText>Create an account to join our waitlist.</AppText>
-          <Link href="/profile">
-            <ButtonOutline>
+export default function LandingScreen({ onToggleView }) {
+  const [view, setView] = useState("landing"); // Tracks the current view
+
+  const handleViewChange = (newView: SetStateAction<string>) => {
+    setView(newView);
+    onToggleView?.(newView); // Optional callback
+  };
+
+  const renderContent = () => {
+    switch (view) {
+      case "landing":
+        return (
+          <View style={styles.buttonContainer}>
+            <AppText>Create an account to join our waitlist.</AppText>
+            <ButtonOutline onPress={() => handleViewChange("signup")}>
               Sign Up
             </ButtonOutline>
-          </Link>
-          <Link href="/updates">
-            <ButtonSolid>
-              Updates
+            <ButtonSolid onPress={() => handleViewChange("signin")}>
+              Sign In
             </ButtonSolid>
-          </Link>
-          <AppText>
-            Not sure? Learn more about us{" "}
-            <ButtonPlainLink>
-              <Link href="/about">
-                here
-              </Link>
-            </ButtonPlainLink>
-          </AppText>
+            <AppText>
+              Not sure? Learn more about us{" "}
+              <ButtonPlainLink>
+                <Link href="/about">here</Link>
+              </ButtonPlainLink>
+            </AppText>
+          </View>
+        );
+      case "signup":
+        return (
+          <View style={styles.buttonContainer}>
+            <AppText>Sign Up</AppText>
+            <AppText>Fill in your details to create an account.</AppText>
+            {/* Add your sign-up form or logic here */}
+            <ButtonOutline onPress={() => handleViewChange("landing")}>
+              Back to Landing
+            </ButtonOutline>
+          </View>
+        );
+      case "signin":
+        return (
+          <View style={styles.buttonContainer}>
+            <AppText>Sign In</AppText>
+            <AppText>Log in to your account.</AppText>
+            {/* Add your sign-in form or logic here */}
+            <ButtonOutline onPress={() => handleViewChange("landing")}>
+              Back to Landing
+            </ButtonOutline>
+          </View>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <BlueGradient style={[styles.landing]}>
+      <View style={styles.topHalf}>
+        <AppHeaderText>
+          Rippl<Text style={styles.period}>.</Text>
+        </AppHeaderText>
+        <AppText>Where small connections make big waves.</AppText>
+        <View style={styles.svgContainer}>
+          <Bikers style={styles.bikers} />
+          <SelfieGirls style={styles.selfieGirls} />
+          <GuySitting style={styles.guySitting} />
+          <Skator style={styles.skator} />
         </View>
+      </View>
+      <BrownGradient style={styles.bottomHalf}>
+        {renderContent()}
         <LeafMound style={styles.leafMound} />
-      </LinearGradient>
-    </LinearGradient>
+      </BrownGradient>
+    </BlueGradient>
   );
 }
 
