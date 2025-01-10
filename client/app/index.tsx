@@ -1,11 +1,11 @@
-import { useFonts } from 'expo-font';
 import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
-// App text is the wrapper for every text element to 
+// App text + App header text are the wrappers for every text element to 
 // maintain consistency between text elements
 import { AppText } from './components/AppText';
+import { AppHeaderText } from "./components/AppHeaderText";
 
 import LeafMound from "../assets/images/leaf_mound.svg";
 import Bikers from "../assets/images/bikes.svg";
@@ -23,7 +23,7 @@ export default function LandingScreen() {
       style={[styles.landing]}
     >
       <View style={styles.topHalf}>
-        <AppText>Rippl.</AppText>
+        <AppHeaderText>Rippl<Text style={styles.period}>.</Text></AppHeaderText>
         <AppText>Where small connections make big waves.</AppText>
         <View style={[styles.svgContainer, styles.dropShadow]}>
           <Bikers style={styles.bikers}></Bikers>
@@ -79,23 +79,8 @@ const styles = StyleSheet.create({
     width: "100%",
     gap: 25,
   },
-  title: {
-    fontSize: 50,
-    fontWeight: "bold",
-    color: "#094D92",
-    fontFamily: 'Montserrat-700',
-  },
   period: {
     color: "#0077B6",
-  },
-  subtitle: {
-    fontSize: 20,
-    color: "#094D92",
-    fontWeight: "bold",
-    marginLeft: 25,
-    marginRight: 25,
-    textAlign: "center",
-    fontFamily: 'Montserrat-700',
   },
   svgContainer: {
     width: "100%",
