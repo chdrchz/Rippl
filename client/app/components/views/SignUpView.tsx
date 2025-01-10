@@ -4,7 +4,7 @@ import { View, StyleSheet } from "react-native";
 import AppText from "../AppText";
 import AppTextThin from "../AppTextThin";
 import InputField from "../InputField";
-import ButtonOutline from "../ButtonOutline";
+import ButtonPlainLink from "../ButtonPlainLink";
 
 // svgs
 import Email from "../../../assets/images/email.svg";
@@ -18,9 +18,9 @@ export default function SignupView({ onViewChange }) {
       <InputField placeholder="Email" svg={Email}/>
       <InputField placeholder="Password" svg={Lock}/>
       <InputField placeholder="Confirm Password" svg={Lock}/>
-      <ButtonOutline onPress={() => onViewChange("landing")}>
+      <ButtonPlainLink onPress={() => onViewChange("landing")}>
         Back to Landing
-      </ButtonOutline>
+      </ButtonPlainLink>
     </View>
   );
 }

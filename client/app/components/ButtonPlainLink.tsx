@@ -1,7 +1,7 @@
 import { useFonts } from 'expo-font';
 import { Pressable, Text, StyleSheet } from 'react-native';
 
-export default function ButtonPlainLink({ children }) {
+export default function ButtonPlainLink({ children, onPress }) {
     const [fontsLoaded] = useFonts({
         'Montserrat-700': require('../../assets/fonts/montserrat-latin-700-normal.ttf'),
       });
@@ -12,7 +12,7 @@ export default function ButtonPlainLink({ children }) {
       }
 
     return (
-        <Pressable>
+        <Pressable onPress={onPress}>
             <Text style={styles.buttonText}>{children}</Text>
         </Pressable>
     )
