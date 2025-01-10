@@ -1,9 +1,7 @@
 import React from "react";
-import { router } from "expo-router"; // Import Link from expo-router
+import { Link } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 import { View, Text, Pressable, StyleSheet } from "react-native";
-
-import { useFonts, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 
 import LeafMound from "../assets/images/leaf_mound.svg";
 import Bikers from "../assets/images/bikes.svg";
@@ -12,7 +10,6 @@ import GuySitting from "../assets/images/guy_sitting.svg";
 import Skator from "../assets/images/skator.svg";
 
 export default function LandingScreen() {
-
   return (
     <LinearGradient
       colors={["rgb(0, 119, 182)", "rgb(66, 148, 190)", "rgb(255, 232, 214)"]}
@@ -50,19 +47,23 @@ export default function LandingScreen() {
           <Text style={styles.subtitleBottom}>
             Create an account to join our waitlist.
           </Text>
-          <Pressable
-          onPress={() => router.push("/profile")}
-          style={[styles.buttonOne, styles.dropShadow]}>
-            <Text style={styles.buttonTextOne}>Sign Up</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => router.push("/updates")}
-            style={[styles.buttonTwo, styles.dropShadow]}
-          >
-            <Text style={styles.buttonTextTwo}>Updates</Text>
-          </Pressable>
+          <Link href="/profile">
+            <Pressable style={[styles.buttonOne, styles.dropShadow]}>
+              <Text style={styles.buttonTextOne}>Sign Up</Text>
+            </Pressable>
+          </Link>
+          <Link href="/updates">
+            <Pressable style={[styles.buttonTwo, styles.dropShadow]}>
+              <Text style={styles.buttonTextTwo}>Updates</Text>
+            </Pressable>
+          </Link>
           <Text style={styles.subtitleBottom}>
-            Not sure? Learn more about us here.
+            Not sure? Learn more about us{" "}
+            <Pressable>
+              <Link href="/about">
+                <Text>here</Text>
+              </Link>
+            </Pressable>
           </Text>
         </View>
         <LeafMound style={styles.leafMound} />
@@ -162,6 +163,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 250,
     height: 50,
+  },
+  buttonThree: {
+    width: "auto",
+    margin: 0,
   },
   buttonTextOne: {
     fontSize: 20,
