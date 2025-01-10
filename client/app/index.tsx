@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     marginBottom: -25,
   },
   buttonContainer: {
-    width: "75%",
+    width: "80%",
     flexDirection: "column",
     textAlign: "center",
     alignItems: "center",
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   contentContainer: {
+    width: "100%",
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
