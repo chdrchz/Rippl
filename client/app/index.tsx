@@ -1,97 +1,55 @@
-import { SetStateAction, useState } from "react";
-import { Link } from "expo-router";
-import { View, Text, StyleSheet } from "react-native";
-
-// Wrappers for consistent text elements
-import AppText from "./components/AppText";
-import AppHeaderText from "./components/AppHeaderText";
-
-// Buttons
-import ButtonOutline from "./components/ButtonOutline";
-import ButtonSolid from "./components/ButtonSolid";
-import ButtonPlainLink from "./components/ButtonPlainLink";
-
-// Gradients
+import { useState } from "react";
+import { View, StyleSheet } from "react-native";
 import { BlueGradient, BrownGradient } from "./components/GradientBackgrounds";
+import AppHeaderText from "./components/AppHeaderText";
+import AppText from "./components/AppText";
 
-// Svgs
-import LeafMound from "../assets/images/leaf_mound.svg";
+// SVGs
 import Bikers from "../assets/images/bikes.svg";
 import SelfieGirls from "../assets/images/selfie_girls.svg";
 import GuySitting from "../assets/images/guy_sitting.svg";
 import Skator from "../assets/images/skator.svg";
+import LeafMound from "../assets/images/leaf_mound.svg";
 
-export default function LandingScreen({ onToggleView }) {
-  const [view, setView] = useState("landing"); // Tracks the current view
+// Views
+import LandingView from "./components/views/LandingView";
+import SignupView from "./components/views/SignUpView";
+import SigninView from "./components/views/SignInView";
 
-  const handleViewChange = (newView: SetStateAction<string>) => {
-    setView(newView);
-    onToggleView?.(newView); // Optional callback
-  };
+export default function LandingScreen() {
+  const [view, setView] = useState("landing");
 
-  const renderContent = () => {
+  const renderView = () => {
     switch (view) {
       case "landing":
-        return (
-          <View style={styles.buttonContainer}>
-            <AppText>Create an account to join our waitlist.</AppText>
-            <ButtonOutline onPress={() => handleViewChange("signup")}>
-              Sign Up
-            </ButtonOutline>
-            <ButtonSolid onPress={() => handleViewChange("signin")}>
-              Sign In
-            </ButtonSolid>
-            <AppText>
-              Not sure? Learn more about us{" "}
-              <ButtonPlainLink>
-                <Link href="/about">here</Link>
-              </ButtonPlainLink>
-            </AppText>
-          </View>
-        );
+        return <LandingView onViewChange={setView} />;
       case "signup":
-        return (
-          <View style={styles.buttonContainer}>
-            <AppText>Sign Up</AppText>
-            <AppText>Fill in your details to create an account.</AppText>
-            {/* Add your sign-up form or logic here */}
-            <ButtonOutline onPress={() => handleViewChange("landing")}>
-              Back to Landing
-            </ButtonOutline>
-          </View>
-        );
+        return <SignupView onViewChange={setView} />;
       case "signin":
-        return (
-          <View style={styles.buttonContainer}>
-            <AppText>Sign In</AppText>
-            <AppText>Log in to your account.</AppText>
-            {/* Add your sign-in form or logic here */}
-            <ButtonOutline onPress={() => handleViewChange("landing")}>
-              Back to Landing
-            </ButtonOutline>
-          </View>
-        );
+        return <SigninView onViewChange={setView} />;
       default:
         return null;
     }
   };
 
   return (
-    <BlueGradient style={[styles.landing]}>
+    <BlueGradient style={styles.landing}>
       <View style={styles.topHalf}>
-        <AppHeaderText>
-          Rippl<Text style={styles.period}>.</Text>
-        </AppHeaderText>
+        <AppHeaderText>Rippl.</AppHeaderText>
         <AppText>Where small connections make big waves.</AppText>
-        <View style={styles.svgContainer}>
-          <Bikers style={styles.bikers} />
-          <SelfieGirls style={styles.selfieGirls} />
-          <GuySitting style={styles.guySitting} />
-          <Skator style={styles.skator} />
-        </View>
+        {view === "landing" && (
+          <View style={styles.svgContainer}>
+            <Bikers style={styles.bikers} />
+            <SelfieGirls style={styles.selfieGirls} />
+            <GuySitting style={styles.guySitting} />
+            <Skator style={styles.skator} />
+          </View>
+        )}
       </View>
-      <BrownGradient style={styles.bottomHalf}>
-        {renderContent()}
+      <BrownGradient
+        style={[styles.bottomHalf, { flex: view === "landing" ? 1 : 2 }]}
+      >
+        <View style={styles.contentContainer}>{renderView()}</View>
         <LeafMound style={styles.leafMound} />
       </BrownGradient>
     </BlueGradient>
@@ -140,6 +98,7 @@ const styles = StyleSheet.create({
     marginBottom: -25,
   },
   buttonContainer: {
+    width: "75%",
     flexDirection: "column",
     textAlign: "center",
     alignItems: "center",
@@ -147,31 +106,11 @@ const styles = StyleSheet.create({
     gap: 30,
     zIndex: 2,
   },
-  buttonOne: {
-    backgroundColor: "#FFE8D6",
-    borderWidth: 2,
-    borderColor: "#56766A",
-    borderRadius: 25,
-    alignItems: "center",
+  contentContainer: {
+    flex: 1,
     justifyContent: "center",
-    width: 250,
-    height: 50,
-    fontFamily: 'Montserrat-700',
-  },
-  buttonTwo: {
-    backgroundColor: "#56766A",
-    borderWidth: 2,
-    borderColor: "#56766A",
-    borderRadius: 25,
     alignItems: "center",
-    textAlign: "center",
-    justifyContent: "center",
-    width: 250,
-    height: 50,
-    fontFamily: 'Montserrat-700',
-  },
-  linkText: {
-    color: "#007AFF",
+    zIndex: 1,
   },
   topHalf: {
     flex: 1,
@@ -201,5 +140,5 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     transform: [{ scale: 1.2 }],
-  }
+  },
 });
