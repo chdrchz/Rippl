@@ -21,5 +21,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Montserrat-700',
         color: "#094D92",
         fontSize: 50,
+        textAlign: "center",
     }
 })
