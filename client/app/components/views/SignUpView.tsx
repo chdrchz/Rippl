@@ -4,6 +4,7 @@ import { View, StyleSheet } from "react-native";
 import AppText from "../AppText";
 import AppTextThin from "../AppTextThin";
 import InputField from "../InputField";
+import ButtonSolid from "../ButtonSolid";
 import ButtonPlainLink from "../ButtonPlainLink";
 import SocialLinks from "../SocialLinks";
 
@@ -16,10 +17,10 @@ export default function SignupView({ onViewChange }) {
   return (
     <View style={styles.signUp}>
       <AppTextThin>So happy you're here!</AppTextThin>
-      <AppText>Sign Up</AppText>
       <InputField placeholder="Email" svg={Email}/>
       <InputField placeholder="Password" svg={Lock}/>
       <InputField placeholder="Confirm Password" svg={Lock}/>
+      <ButtonSolid onPress={() => console.log("successfully clicked button")}>Sign Up</ButtonSolid>
       <AppText>--- or sign up with ---</AppText>
       <View style={styles.socialLinks}>
         <SocialLinks svg={Google}></SocialLinks>

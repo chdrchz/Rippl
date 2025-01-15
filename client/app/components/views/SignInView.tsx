@@ -1,7 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import AppText from "../AppText";
 import InputField from "../InputField";
-import ButtonOutline from "../ButtonOutline";
 import ButtonPlainLink from "../ButtonPlainLink";
 import SocialLinks from "../SocialLinks";
 
@@ -9,13 +8,16 @@ import SocialLinks from "../SocialLinks";
 import Email from "../../../assets/images/email.svg";
 import Lock from "../../../assets/images/lock.svg";
 import Google from "../../../assets/images/google.svg";
+import ButtonSolid from "../ButtonSolid";
+import AppTextThin from "../AppTextThin";
 
 export default function SigninView({ onViewChange }) {
   return (
     <View style={styles.signIn}>
-      <AppText>Sign In</AppText>
+      <AppTextThin>Welcome back!</AppTextThin>
       <InputField placeholder="Email" svg={Email}/>
       <InputField placeholder="Password" svg={Lock}/>
+      <ButtonSolid onPress={() => console.log("successfully clicked button")}>Sign In</ButtonSolid>
       <AppText>--- or sign in with ---</AppText>
       <View style={styles.socialLinks}>
         <SocialLinks svg={Google}></SocialLinks>
@@ -26,9 +28,9 @@ export default function SigninView({ onViewChange }) {
           Sign Up
         </ButtonPlainLink>
       </AppText>
-      <ButtonOutline onPress={() => onViewChange("landing")}>
-        Back to Landing
-      </ButtonOutline>
+      <ButtonPlainLink onPress={() => onViewChange("landing")}>
+        Back to landing
+      </ButtonPlainLink>
     </View>
   );
 }
