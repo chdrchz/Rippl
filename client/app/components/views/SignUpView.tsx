@@ -5,10 +5,12 @@ import AppText from "../AppText";
 import AppTextThin from "../AppTextThin";
 import InputField from "../InputField";
 import ButtonPlainLink from "../ButtonPlainLink";
+import SocialLinks from "../SocialLinks";
 
 // svgs
 import Email from "../../../assets/images/email.svg";
 import Lock from "../../../assets/images/lock.svg";
+import Google from "../../../assets/images/google.svg";
 
 export default function SignupView({ onViewChange }) {
   return (
@@ -18,9 +20,16 @@ export default function SignupView({ onViewChange }) {
       <InputField placeholder="Email" svg={Email}/>
       <InputField placeholder="Password" svg={Lock}/>
       <InputField placeholder="Confirm Password" svg={Lock}/>
-      <ButtonPlainLink onPress={() => onViewChange("landing")}>
-        Back to Landing
-      </ButtonPlainLink>
+      <AppText>--- or sign up with ---</AppText>
+      <View style={styles.socialLinks}>
+        <SocialLinks svg={Google}></SocialLinks>
+      </View>
+      <AppText>
+        Already have an account?
+        <ButtonPlainLink onPress={() => onViewChange("signin")}>
+          Log in
+        </ButtonPlainLink>
+      </AppText>
     </View>
   );
 }
@@ -31,5 +40,8 @@ const styles = StyleSheet.create({
     gap: 20,
     justifyContent: "flex-start",
     alignItems: "center",
+  },
+  socialLinks: {
+    height: "auto",
   }
 })
