@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     borderColor: '#3b82f6',  // Change this to your desired color
     borderWidth: 6, 
-    overflow: 'hidden',
+
     marginRight: 16,
   },
   image: {
