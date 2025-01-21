@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet, ScrollView } from 'react-native';
 import { BlueGradient, BrownGradient } from "./components/GradientBackgrounds";
-import founders from '../assets/images/founders.jpeg'; // Import your image
+import founders from '../assets/images/founders.jpeg';
 
 interface AboutMeData {
   name: string;
@@ -10,9 +10,9 @@ interface AboutMeData {
 
 // Static/default data
 const aboutMeData: AboutMeData = {
-  name: 'John Doe',
-  title: 'Founder & CEO',
-  bio: 'Passionate about helping people connect through their hobbies and interests.',
+  name: 'Savanna Davis and Frank Blation',
+  title: 'Founders',
+  bio: 'Passionate about helping people find, keep, and build their communinty.',
 };
 
 export default function AboutMe() {
@@ -23,7 +23,7 @@ export default function AboutMe() {
           <View style={styles.contentWrapper}>
             <View style={styles.imageWrapper}>
               <Image
-                source={founders} 
+                source={founders}
                 style={styles.image}
               />
             </View>
@@ -94,15 +94,11 @@ const styles = StyleSheet.create({
   imageWrapper: {
     width: 500,
     height: 500,
-    borderRadius: 60,
-    borderColor: '#3b82f6',  // Change this to your desired color
-    borderWidth: 6, 
-
     marginRight: 16,
   },
   image: {
-    width: '100%',
-    height: '100%',
+    width: '50vh',
+    height: '50vh',
     borderRadius: 60,
     resizeMode: 'cover',
   },
